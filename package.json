@@ -1,0 +1,24 @@
+{
+  "name": "algorithm-review",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover node_modules/mocha/bin/_mocha ./test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maoruibin001/algorithm-review.git"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "istanbul": "^0.4.5"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maoruibin001/algorithm-review/issues"
+  },
+  "homepage": "https://github.com/maoruibin001/algorithm-review#readme"
+}
