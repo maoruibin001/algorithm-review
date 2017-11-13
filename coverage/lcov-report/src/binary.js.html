@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src\select.js</title>
+    <title>Code coverage report for src\binary.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">src/</a> select.js
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> binary.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>15/15</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>11/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>15/15</span>
       </div>
     </div>
   </div>
@@ -68,25 +68,59 @@
 23
 24
 25
-26</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-yes">32×</span>
-<span class="cline-any cline-yes">32×</span>
-<span class="cline-any cline-yes">144×</span>
-<span class="cline-any cline-yes">31×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">32×</span>
-<span class="cline-any cline-yes">20×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -94,31 +128,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * Created by lenovo on 2017/11/10.
+ * Created by lenovo on 2017/11/13.
+ * 二分查找法
  */
-const swap = require('./swap');
 &nbsp;
-function select(arr) {
-  for (let i = 0; i &lt; arr.length - 1; i ++) {
-    let min = i;
-    for (let j = i + 1; j &lt; arr.length; j ++) {
-      if (arr[j] &lt; arr[min]) {
-        min = j;
-      }
-    }
-    if (min !== i) {
-      arr = swap(arr, min, i);
-    }
+/**
+ * 二分查找法
+ * @param {Array} arr 待查找数组
+ * @param {Number} value 待查找元素
+ *
+ * @return {Number} 如果找到则返回元素下标，否则返回-1
+ */
+&nbsp;
+function binary(arr, value) {
+  if (arr.length &lt;= 1) {
+    return arr[0] === value ? 0 : -1;
   }
 &nbsp;
-  return arr;
+  let start = 0;
+  let end = arr.length - 1;
+&nbsp;
+  let middle;
+&nbsp;
+  // 此处必须加此限制条件，确保查找的数在待查找对象中，否则会出现死循环
+  while(start &lt; end &amp;&amp; arr[start] &lt;= value &amp;&amp; arr[end] &gt;= value) {
+    middle = start + Math.round(((value - arr[start]) / (arr[end] - arr[start])) * (end - start));
+    if (arr[middle] === value) {
+      return middle;
+    } else if (arr[middle] &lt; value) {
+      start = middle + 1;
+    } else {
+      end = middle - 1;
+    }
+  }
+  return -1;
 }
 &nbsp;
-// var arr = [9, 1, 3, 7, 22, 5, 3, 6, 1];
-// var newArr = select(arr);
-// console.log(newArr)
 &nbsp;
-module.exports = select;</pre></td></tr>
+// var arr = [1, 2, 3.3, 3.46, 4,  6, 7,9];
+//
+// console.log(binary(arr,8));
+&nbsp;
+module.exports = binary;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

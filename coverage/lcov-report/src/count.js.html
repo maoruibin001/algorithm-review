@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src\select.js</title>
+    <title>Code coverage report for src\count.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">src/</a> select.js
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> count.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>18/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>17/17</span>
       </div>
     </div>
   </div>
@@ -68,25 +68,61 @@
 23
 24
 25
-26</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-yes">32×</span>
-<span class="cline-any cline-yes">32×</span>
-<span class="cline-any cline-yes">144×</span>
-<span class="cline-any cline-yes">31×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">32×</span>
-<span class="cline-any cline-yes">20×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">88×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -94,31 +130,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * Created by lenovo on 2017/11/10.
+ * Created by lenovo on 2017/11/12.
+ * 计数排序
  */
-const swap = require('./swap');
 &nbsp;
-function select(arr) {
-  for (let i = 0; i &lt; arr.length - 1; i ++) {
-    let min = i;
-    for (let j = i + 1; j &lt; arr.length; j ++) {
-      if (arr[j] &lt; arr[min]) {
-        min = j;
-      }
-    }
-    if (min !== i) {
-      arr = swap(arr, min, i);
-    }
+/**
+ * 计数排序
+ * @parma {Array} arr 待排序数组
+ *
+ * @return {Array} 排序成功数组
+ */
+function count(arr) {
+  if (arr.length &lt; 2) return arr;
+&nbsp;
+  // 存储元素个数的中间数组
+  let tempList = [];
+&nbsp;
+  let min = arr[0];
+  let max = arr[0];
+  let ret = [];
+  for (let i = 0; i &lt; arr.length; i ++) {
+    min = arr[i] &lt; min ? arr[i] : min;
+    max = arr[i] &gt; max ? arr[i] : max;
+    tempList[arr[i]] = tempList[arr[i]] ? tempList[arr[i]] + 1 : 1;
+  }
+// 填充中间数组，计算出每个元素之前有多少个元素
+  for (let j = min; j &lt;= max; j ++) {
+    tempList[j + 1] = tempList[j] + (tempList[j + 1] || 0);
+  }
+// 由于数组arr第k个元素前面有tempList[arr[k]]个元素，所以在新数组中第tempList[arr[k]]个位置填入arr[k]
+  for (let k = 0; k &lt; arr.length; k ++) {
+    ret[tempList[arr[k]] - 1] = arr[k];
+    tempList[arr[k]] --;
   }
 &nbsp;
-  return arr;
+  return ret;
 }
 &nbsp;
-// var arr = [9, 1, 3, 7, 22, 5, 3, 6, 1];
-// var newArr = select(arr);
-// console.log(newArr)
 &nbsp;
-module.exports = select;</pre></td></tr>
+// var arr = [9, 1, 3, 7, 22, 5, 3, 6, 1];
+// var newArr = count(arr);
+// console.log(newArr);
+&nbsp;
+module.exports = count;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
